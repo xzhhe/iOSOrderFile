@@ -41,6 +41,13 @@ void __sanitizer_cov_trace_pc_guard_init(uint32_t *start, uint32_t *stop)
     *x = ++N;
 }
 
+/**
+ * 每一个被插桩的函数调用, 回调执行点
+ * 网上大多数代码都比较简单, 直接就是 malloc node 然后就是 enque
+ * 但是如果你的项目比较大、代码比较多, 或者你想捕捉更多的符号, 那么大量的 malloc 会导致内存不够, App 进程被杀
+ * 经过 debug 观察, 发现存在【大量重复】的函数调用,
+ * 所以我们只需要将重复的函数调用给它【过滤】掉就完事了 ~
+ */
 void __sanitizer_cov_trace_pc_guard(uint32_t *guard)
 {
   void* pc = NULL;
@@ -143,6 +150,12 @@ void generate_order_file()
     }
 
     // 顺序取反
+    // 为什么？
+    // 因为【存入】的时候使用的是【queue 队列】这种结构。比如: 1,2,3,4,5
+    // 而在【取出】的时候用的是【deque 队尾】元素。比如: 5,4,3,2,1
+    // 如果按上面 5,4,3,2,1 顺序, 来依次存储符号, 那么显然【调用顺序】不对
+    // 每一次【deque 队尾】拿到的函数符号, 都是比【前一次】符号【调用早】的符号
+    // 所以需要【头插】方式来保存每一次【deque 队尾】的符号。最终符号存储顺序: 1,2,3,4,5
     [symbolNames insertObject:sname atIndex:0];
     free(node);
   }
