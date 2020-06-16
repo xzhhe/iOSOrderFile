@@ -1,0 +1,16 @@
+PODS:
+  - iOSOrderFile (0.1.0)
+
+DEPENDENCIES:
+  - iOSOrderFile (from `../`)
+
+EXTERNAL SOURCES:
+  iOSOrderFile:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  iOSOrderFile: 1e34bbcbfcdc711a31ad55ab691e932f8210f6e8
+
+PODFILE CHECKSUM: bac0227c498d1b19e975b98e8c6ab06ee08666bf
+
+COCOAPODS: 1.6.0

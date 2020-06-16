@@ -1,0 +1,6 @@
+framework module iOSOrderFile {
+  umbrella header "iOSOrderFile-umbrella.h"
+
+  export *
+  module * { export * }
+}
