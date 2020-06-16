@@ -1,0 +1,6 @@
+use_frameworks!
+target 'iOSOrderFile_Tests' do
+  pod 'iOSOrderFile', :path => '../'
+  
+  
+end
