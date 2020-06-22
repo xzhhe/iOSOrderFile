@@ -61,7 +61,7 @@ end
 
 ### 2. 跑起你的项目
 
-![](Snip20200622_2.png)
+![](images/Snip20200622_2.png)
 
 - 就可以看到搜集到的符号输出了
 - `filePath:` 对应的就是 生成的 order file 文件的路径
