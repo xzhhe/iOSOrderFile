@@ -9,7 +9,6 @@
 #define iOSOrderFile_h
 
 #import <Foundation/Foundation.h>
-
 void generate_order_file(void);
 
 #endif /* iOSOrderFile_h */
