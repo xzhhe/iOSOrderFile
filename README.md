@@ -53,7 +53,8 @@ end
   /**
    * 生成 order file
    */
-  generate_order_file();
+  NSString* filePath = generate_order_file();
+  NSLog(@"filePath: %@", filePath);
 }
 
 @end

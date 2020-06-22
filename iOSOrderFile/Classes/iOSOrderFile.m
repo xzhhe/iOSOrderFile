@@ -104,9 +104,10 @@ void __sanitizer_cov_trace_pc_guard(uint32_t *guard)
   OSAtomicEnqueue(&head, node, offsetof(SymbolNode, next));
 }
 
-void generate_order_file()
+NSString* generate_order_file()
 {
   finish = YES;
+
 #if 0
   dispatch_async(dispatch_get_global_queue(0, 0), ^{
 #endif
@@ -169,7 +170,10 @@ void generate_order_file()
   NSLog(@"filePath: %@", filePath);
   NSData* fileContents = [funcStr dataUsingEncoding:NSUTF8StringEncoding];
   [[NSFileManager defaultManager] createFileAtPath:filePath contents:fileContents attributes:nil];
+
 #if 0
   });
 #endif
+
+  return filePath;
 }
